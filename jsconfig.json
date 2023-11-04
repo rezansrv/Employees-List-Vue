@@ -9,6 +9,9 @@
         "src/*"
       ]
     },
+    "types": [
+      "vue-sweetalert2"
+    ],
     "lib": [
       "esnext",
       "dom",

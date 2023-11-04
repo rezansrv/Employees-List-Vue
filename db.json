@@ -1,0 +1,167 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "employee_name": "Tiger Nixon",
+      "employee_salary": 320800,
+      "employee_age": 61,
+      "employee_uni": "texas"
+    },
+    {
+      "id": 2,
+      "employee_name": "Garrett Winters",
+      "employee_salary": 170750,
+      "employee_age": 63,
+      "employee_uni": "Harvard University"
+    },
+    {
+      "id": 3,
+      "employee_name": "Ashton Cox",
+      "employee_salary": 86000,
+      "employee_age": 66,
+      "employee_uni": "Stanford University"
+    },
+    {
+      "id": 4,
+      "employee_name": "Cedric Kelly",
+      "employee_salary": 433060,
+      "employee_age": 22,
+      "employee_uni": "University of Cambridge"
+    },
+    {
+      "id": 5,
+      "employee_name": "Airi Satou",
+      "employee_salary": 162700,
+      "employee_age": 33,
+      "employee_uni": "University of Oxford"
+    },
+    {
+      "id": 6,
+      "employee_name": "Brielle Williamson",
+      "employee_salary": 372000,
+      "employee_age": 61,
+      "employee_uni": "texas"
+    },
+    {
+      "id": 7,
+      "employee_name": "Herrod Chandler",
+      "employee_salary": 137500,
+      "employee_age": 59,
+      "employee_uni": "Massachusetts Institute of Technology (MIT) "
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "first_name": "Tiger ",
+      "last_name": "Nixon",
+      "email": "user@example.com",
+      "pass": 123456,
+      "isAdmin": "false"
+    },
+    {
+      "first_name": "tina",
+      "last_name": "hosseinpour",
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "isAdmin": true,
+      "id": 2
+    },
+    {
+      "first_name": "shadi",
+      "last_name": "ghaffarvand",
+      "email": "shadi@go2tr.com",
+      "pass": "123654789",
+      "isAdmin": true,
+      "id": 3
+    },
+    {
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "id": 4
+    },
+    {
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "id": 5
+    },
+    {
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "id": 6
+    },
+    {
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "id": 7
+    },
+    {
+      "first_name": "cnxcn",
+      "last_name": "xcncn",
+      "email": "rez@gmai.com",
+      "pass": "123456",
+      "isAdmin": false,
+      "id": 8
+    },
+    {
+      "email": "rez@gmai.comxbxb",
+      "pass": "123456",
+      "id": 9
+    },
+    {
+      "email": "rez@gmai.com",
+      "pass": "123456",
+      "id": 10
+    },
+    {
+      "email": "rezdsbvdfsbds@gmai.com",
+      "pass": "123456",
+      "id": 11
+    },
+    {
+      "first_name": "wge",
+      "last_name": "egeg",
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "isAdmin": true,
+      "id": 12
+    },
+    {
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "id": 13
+    },
+    {
+      "first_name": "Reza",
+      "last_name": "naser",
+      "email": "rezansr@gmail.com",
+      "pass": "123",
+      "isAdmin": false,
+      "id": 14
+    },
+    {
+      "first_name": "sdgvasg",
+      "last_name": "asgasg",
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "isAdmin": true,
+      "id": 15
+    },
+    {
+      "first_name": "reza",
+      "last_name": "safvav",
+      "email": "reza@go2tr.com",
+      "pass": "123",
+      "isAdmin": true,
+      "id": 16
+    },
+    {
+      "first_name": "esg",
+      "last_name": "sgsg",
+      "email": "tina.hosseinpour@gmail.com",
+      "pass": "1",
+      "isAdmin": false,
+      "id": 17
+    }
+  ]
+}
