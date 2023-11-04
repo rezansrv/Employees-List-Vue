@@ -1,13 +1,43 @@
 <template>
-  <div class='container'>
+  <div class="container" :style="backgroundStyle">
     <h1 class="header">Employees List</h1>
-    <!-- اضافه کردن ورودی برای نام کارمند -->
-    <div class="input-container">
-      <input v-model="newEmployeeName" placeholder="Name" class="input-field"   />
-      <input v-model="newEmployeeSalary" placeholder="Salary" class="input-field" @input="sanitizeInput"  />
-      <input v-model="newEmployeeAge" placeholder="Age" class="input-field" @input="sanitizeInput"  />
-      <input v-model="newEmployeeUni" v-if="newEmployeeAge >= 20" placeholder="Uni" class="input-field"  />
-      <button @click="addEmployee" :disabled="isButtonDisabled" class="add-button">Add Employee</button>
+    <div class="employee-form">
+      <div class="input-row">
+        <input
+          v-model="newEmployeeName"
+          placeholder="Name"
+          class="input-field"
+        />
+        <input
+          v-model="newEmployeeSalary"
+          placeholder="Salary"
+          class="input-field"
+          @input="sanitizeInput"
+        />
+        <input
+          v-model="newEmployeeAge"
+          placeholder="Age"
+          class="input-field"
+          @input="sanitizeInput"
+        />
+        <input
+          v-model="newEmployeeUni"
+          v-if="newEmployeeAge >= 20"
+          placeholder="Uni"
+          class="input-field"
+        />
+      </div>
+      <button
+        @click="addEmployee"
+        :disabled="isButtonDisabled"
+        class="add-button"
+      >
+        <i class="fa fa-plus" style="font-size: 22px; color: #fff"></i>
+      </button>
+      <button @click="saveEmployeeChanges" class="add-button edit-button">
+        <i class="fa fa-save" style="font-size: 22px;  color: #fff"></i> Save
+        Changes
+      </button>
     </div>
 
     <table>
@@ -18,7 +48,7 @@
           <th>Salary</th>
           <th>Age</th>
           <th>Uni</th>
-          <th>Actions</th> <!-- ستون جدید برای عملیات -->
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -27,11 +57,14 @@
           <td>{{ employee.employee_name }}</td>
           <td>{{ employee.employee_salary }} $</td>
           <td>{{ employee.employee_age }}</td>
-          <td>{{employee.employee_uni.length ? employee.employee_uni : '----' }}</td>
+          <td>{{ employee.employee_uni || "----" }}</td>
           <td>
-            <button @click="deleteEmployee(employee.id)" class="delete-btn"> <i class="fa fa-trash-o" style="font-size:24px ; color: red;"></i></button>
-          
-
+            <a @click="deleteEmployee(employee.id)" class="btn btn-danger">
+              <i class="fa fa-trash"></i> Delete
+            </a>
+            <a @click="editEmployee(employee)" class="btn btn-primary">
+              <i class="fa fa-pencil"></i> Edit
+            </a>
           </td>
         </tr>
       </tbody>
@@ -43,6 +76,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import Swal from "sweetalert2";
 
 Vue.use(VueAxios, axios);
 
@@ -55,15 +89,21 @@ export default {
       newEmployeeSalary: "",
       newEmployeeAge: "",
       newEmployeeUni: "",
+      editEmployeeId: null,
     };
   },
   computed: {
     isButtonDisabled() {
-      if (this.newEmployeeName && this.newEmployeeSalary && this.newEmployeeAge) {
-        return false;
-      } else {
-        return true;
-      }
+      return !(
+        this.newEmployeeName &&
+        this.newEmployeeSalary &&
+        this.newEmployeeAge
+      );
+    },
+    backgroundStyle() {
+      return {
+        backgroundImage: `url(https://source.unsplash.com/1080x1080/?light-blue,${Math.random()} ) `,
+      };
     },
   },
   mounted() {
@@ -71,10 +111,8 @@ export default {
   },
   methods: {
     sanitizeInput() {
-      // حذف هر چیزی که عدد نباشد
       this.newEmployeeSalary = this.newEmployeeSalary.replace(/[^0-9]/g, "");
       this.newEmployeeAge = this.newEmployeeAge.replace(/[^0-9]/g, "");
-
     },
     loadEmployees() {
       axios
@@ -83,25 +121,26 @@ export default {
           this.employees = response.data;
         })
         .catch((error) => {
-          console.error("خطا در دریافت داده‌ها: " + error);
+          console.error("Error fetching data: " + error);
         });
     },
     addEmployee() {
       axios
         .post("http://localhost:3000/employees", {
           employee_name: this.newEmployeeName,
-          employee_salary: this.newEmployeeAge,
-          employee_age: this.newEmployeeSalary,
+          employee_salary: this.newEmployeeSalary,
+          employee_age: this.newEmployeeAge,
           employee_uni: this.newEmployeeUni,
         })
         .then((response) => {
           if (response.status === 201) {
-            Vue.swal("Employee added successfully!");
+            Swal.fire("Employee added successfully!", response.data, "success");
+
             this.newEmployeeName = "";
             this.newEmployeeSalary = "";
             this.newEmployeeAge = "";
             this.newEmployeeUni = "";
-            this.loadEmployees(); // بارگذاری دوباره لیست کارمندان
+            this.loadEmployees();
           } else {
             Vue.swal("Error adding employee.");
           }
@@ -112,81 +151,119 @@ export default {
         .delete("http://localhost:3000/employees/" + employeeId)
         .then((response) => {
           if (response.status === 200) {
-            Vue.swal("Employee deleted successfully!");
-            this.loadEmployees(); // بارگذاری دوباره لیست کارمندان
+            Swal.fire(
+              "Employee deleted successfully!",
+              response.data,
+              "success"
+            );
+
+            this.loadEmployees();
           } else {
             Vue.swal("Error deleting employee.");
-            
           }
         });
+    },
+    editEmployee(employee) {
+      this.newEmployeeName = employee.employee_name;
+      this.newEmployeeSalary = employee.employee_salary;
+      this.newEmployeeAge = employee.employee_age;
+      this.newEmployeeUni = employee.employee_uni || "";
+      this.editEmployeeId = employee.id;
+    },
+    saveEmployeeChanges() {
+      if (this.editEmployeeId) {
+        axios
+          .put("http://localhost:3000/employees/" + this.editEmployeeId, {
+            employee_name: this.newEmployeeName,
+            employee_salary: this.newEmployeeSalary,
+            employee_age: this.newEmployeeAge,
+            employee_uni: this.newEmployeeUni,
+          })
+          .then((response) => {
+            if (response.status === 200) {
+              Swal.fire(
+                "Employee updated successfully!",
+                response.data,
+                "success"
+              );
+              this.newEmployeeName = "";
+              this.newEmployeeSalary = "";
+              this.newEmployeeAge = "";
+              this.newEmployeeUni = "";
+              this.editEmployeeId = null;
+              this.loadEmployees();
+            } else {
+              Swal.fire("Error updating employee.");
+            }
+          });
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-
 .header {
   margin: 0 auto;
   display: block;
   width: 100%;
   text-align: center;
-  color: #003670; /* رنگ متن هدر */
+  color: #003670;
+  margin-bottom: 30px;
+}
+.container {
+  max-width: 80%;
+  padding: 40px;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  height: 150vh;
+  border-radius: 20px;
+  background-size: cover;
 }
 
-.container {
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0 auto;
+  padding: 15px;
+  width: 75%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffffcc;
 }
 
 .input-field {
-  margin: 5px;
-  padding: 7px; /* تغییر اندازه پدینگ */
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  background-color: #f8f8f8;
-}
-
-.input-container button {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 20px;
-  border: none;
   border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  font-size: 16px;
 }
 
-.input-container button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.input-container button:hover {
-  background-color: #0056b3;
-}
-
-
-.input-container {
+.input-row {
   display: flex;
-  justify-content: center;
-  padding: 30px;
+  gap: 10px;
 }
 
 .add-button {
-  background-color: #007BFF;
-  color: white;
-  padding: 7px 20px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  background-color: #207cca;
+  color: #fff;
   border: none;
-  margin-left: 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 16px;
   transition: background-color 0.3s;
 }
 
 .add-button:disabled {
-  background-color: #ccc;
+  background-color: #207cca;
   cursor: not-allowed;
 }
 
@@ -194,42 +271,57 @@ export default {
   background-color: #0056b3;
 }
 
-.delete-btn{
+.edit-button{
+margin-top: 2px;
+margin-bottom: 15px;
+}
+
+
+.delete-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-.delete-btn:hover{
-  scale: 1.1;
+  padding: 0;
 }
 
-.employees-list {
-  text-align: center;
+.delete-btn:hover {
+  transform: scale(1.1);
 }
 
 table {
-  width: 60%;
+  width: 100%;
+  margin-bottom: 50px;
   border-collapse: collapse;
   text-align: center;
   margin-top: 20px;
-  margin: 0 auto;
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
 }
 
 th,
 td {
-  border: 1px solid #ccc;
+  border: 1px solid #ccccccc1;
   padding: 10px;
   text-align: center;
-  
-  
 }
 
 th {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0b0;
+  padding: 12px;
+  font-size: 14px;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2d8;
+  transition: background-color 0.3s;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f8f8f8d7;
+  transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+  background-color: #cfe8fc;
 }
 </style>

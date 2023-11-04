@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="registration-title">Registration</h2>
     <form @submit.prevent="registerUser" class="registration-form">
       <div class="form-group">
@@ -24,7 +24,7 @@
 
       <button type="submit" class="register-button">Register</button>
     </form>
-    <p>Already have an account? <router-link to="/login">Log In</router-link></p>
+    <p>Already have an account? <router-link to="/">Log In</router-link></p>
   </div>
   </template>
   
@@ -64,7 +64,7 @@
           .post("http://localhost:3000/user", registrationData)
           .then((response) => {
             Swal.fire("Registration successful", response.data, "success");
-            this.$router.push("/login");
+            this.$router.push("/");
           })
           .catch((error) => {
             console.error("Registration error:", error);
@@ -78,15 +78,20 @@
   
 <style>
 
+.container{
+  height: 100vh;
+}
 .registration-title {
   text-align: center;
   margin-top: 60px;
 }
+
 .registration-form {
   max-width: 400px;
   margin: 0 auto;
   background-color: #f7f7f7;
-  padding: 20px;
+  padding: 30px;
+  padding-left: 12px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -111,9 +116,14 @@
   color: white;
   padding: 12px 20px;
   border: none;
-  width: 100%;
+  margin-top: 25px;
+  width: 421px;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.login-button:hover {
+  background-color: #3195ff;
 }
 
 .success-message {

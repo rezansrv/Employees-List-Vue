@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :style="backgroundStyle" >
     <h1 class="header">Employees List</h1>
     <!-- اضافه کردن ورودی برای نام کارمند -->
 
@@ -47,6 +47,15 @@ export default {
   mounted() {
     this.loadEmployees();
   },
+  computed: {
+
+    backgroundStyle(){
+      return {
+        backgroundImage: `url(https://source.unsplash.com/1080x1080/?office,${Math.random()} ) `,
+      };
+    }   
+    
+  },
   methods: {
     loadEmployees() {
       axios
@@ -65,112 +74,120 @@ export default {
   <style scoped>
   
   .header {
-    margin: 0 auto;
-    display: block;
-    width: 100%;
-    text-align: center;
-    color: #003670; /* رنگ متن هدر */
-    margin-bottom: 35px;
-    margin-top: 20px;
-  }
-  
-  .container {
-    margin: 0 auto;
-  }
-  
-  .input-field {
-    margin: 5px;
-    padding: 7px; /* تغییر اندازه پدینگ */
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #f8f8f8;
-  }
-  
-  .input-container button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .input-container button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .input-container button:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  .input-container {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-  }
-  
-  .add-button {
-    background-color: #007BFF;
-    color: white;
-    padding: 7px 20px;
-    border: none;
-    margin-left: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .add-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .add-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .delete-btn{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  .delete-btn:hover{
-    scale: 1.1;
-  }
-  
-  .employees-list {
-    text-align: center;
-  }
-  
-  table {
-    width: 60%;
-    border-collapse: collapse;
-    text-align: center;
-    margin-top: 20px;
-    margin: 0 auto;
-  
-  }
-  
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    
-    
-  }
-  
-  th {
-    background-color: #f0f0f0;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #003670;
+  margin-bottom: 40px;
+}
+.container {
+  max-width: 80%;
+  padding: 40px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+  height: 150vh;
+  border-radius: 10px;
+  background-size: cover;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 15px;
+  width: 75%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #ffffffcc;
+}
+
+.input-field {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.add-button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  background-color: #207cca;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.add-button:disabled {
+  background-color: #ccc;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+
+table {
+  width: 100%;
+  margin-bottom: 50px;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  border: 1px solid #ccccccc1;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f0f0f0b0;
+  padding: 12px;
+  font-size: 14px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2d8;
+  transition: background-color 0.3s;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f8f8f8d7;
+  transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+  background-color: #cfe8fc;
+}
+
+
   </style>
   

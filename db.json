@@ -1,11 +1,11 @@
 {
   "employees": [
     {
-      "id": 1,
       "employee_name": "Tiger Nixon",
       "employee_salary": 320800,
-      "employee_age": 61,
-      "employee_uni": "texas"
+      "employee_age": "40",
+      "employee_uni": "texas",
+      "id": 1
     },
     {
       "id": 2,
@@ -41,13 +41,6 @@
       "employee_salary": 372000,
       "employee_age": 61,
       "employee_uni": "texas"
-    },
-    {
-      "id": 7,
-      "employee_name": "Herrod Chandler",
-      "employee_salary": 137500,
-      "employee_age": 59,
-      "employee_uni": "Massachusetts Institute of Technology (MIT) "
     }
   ],
   "user": [
@@ -162,6 +155,46 @@
       "pass": "1",
       "isAdmin": false,
       "id": 17
+    },
+    {
+      "first_name": "svv",
+      "last_name": "vsv",
+      "email": "rthb@gmailcom",
+      "pass": "123456",
+      "isAdmin": false,
+      "id": 18
+    },
+    {
+      "first_name": "erbvd",
+      "last_name": "ebreb",
+      "email": "wgvev@gmailcom",
+      "pass": "1",
+      "isAdmin": false,
+      "id": 19
+    },
+    {
+      "first_name": "dfbv ",
+      "last_name": "db ",
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "isAdmin": true,
+      "id": 20
+    },
+    {
+      "first_name": "ali",
+      "last_name": "tanha",
+      "email": "jgjgjg@gmail.com",
+      "pass": "123",
+      "isAdmin": false,
+      "id": 21
+    },
+    {
+      "first_name": "قدفد",
+      "last_name": "فدغفد",
+      "email": "tina.hosseinpour@go2tr.com",
+      "pass": "123456",
+      "isAdmin": true,
+      "id": 22
     }
   ]
 }
