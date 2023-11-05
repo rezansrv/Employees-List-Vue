@@ -5,7 +5,7 @@
       <router-link to="/" style="display: flex; width: 80px; justify-content: center;">Login</router-link>
       <!-- Display the "Home" button only if the user is an admin -->
       <router-link v-if="isAdmin" to="/Admin" style="display: flex; width: 80px; justify-content: center;">Admin</router-link>
-      <router-link v-if="isAdmin" to="/home" style="display: flex; width: 80px; justify-content: center;">Home</router-link>
+      <router-link to="/home" style="display: flex; width: 80px; justify-content: center;">Home</router-link>
 
     </links>
     <router-view></router-view>

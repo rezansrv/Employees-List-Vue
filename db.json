@@ -41,6 +41,13 @@
       "employee_salary": 372000,
       "employee_age": 61,
       "employee_uni": "texas"
+    },
+    {
+      "employee_name": "dcs",
+      "employee_salary": "2000",
+      "employee_age": "20",
+      "employee_uni": "",
+      "id": 7
     }
   ],
   "user": [
@@ -195,6 +202,14 @@
       "pass": "123456",
       "isAdmin": true,
       "id": 22
+    },
+    {
+      "first_name": "sddv sdv ",
+      "last_name": "sdvsdv",
+      "email": "reza@gmail.com",
+      "pass": "123",
+      "isAdmin": false,
+      "id": 23
     }
   ]
 }

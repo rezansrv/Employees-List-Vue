@@ -23,6 +23,9 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
+localStorage.setItem("isAdmin", "false");
+localStorage.setItem("isUser", "false");
+
 
 export default {
   data() {
@@ -66,7 +69,7 @@ export default {
               this.$router.push("/admin");
             } else {
               // Set isAdmin to false in local storage
-              localStorage.setItem("isAdmin", "false");
+              localStorage.setItem("isUser", "true");
               // Redirect to the home page
               this.$router.push("/home");
             }
