@@ -43,11 +43,18 @@
       "employee_uni": "texas"
     },
     {
-      "employee_name": "dcs",
-      "employee_salary": "2000",
-      "employee_age": "20",
-      "employee_uni": "",
-      "id": 7
+      "id": 7,
+      "employee_name": "Cedric Kelly",
+      "employee_salary": 433060,
+      "employee_age": 22,
+      "employee_uni": "University of Cambridge"
+    },
+    {
+      "employee_name": "Airi Satu",
+      "employee_salary": 162700,
+      "employee_age": 33,
+      "employee_uni": "University of Oxford",
+      "id": 8
     }
   ],
   "user": [
@@ -210,6 +217,14 @@
       "pass": "123",
       "isAdmin": false,
       "id": 23
+    },
+    {
+      "first_name": "Reza",
+      "last_name": "Naseri",
+      "email": "rnaserivand@gmail.com",
+      "pass": "123456",
+      "isAdmin": false,
+      "id": 24
     }
   ]
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="backgroundStyle">
+  <div class="container" >
     <h1 class="header">Employees List</h1>
     <div class="employee-form">
       <div class="input-row">
@@ -100,11 +100,7 @@ export default {
         this.newEmployeeAge
       );
     },
-    backgroundStyle() {
-      return {
-        backgroundImage: `url(https://source.unsplash.com/1080x1080/?light-blue,${Math.random()} ) `,
-      };
-    },
+
   },
   mounted() {
     this.loadEmployees();
@@ -208,7 +204,7 @@ export default {
   display: block;
   width: 100%;
   text-align: center;
-  color: #003670;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 .container {
@@ -220,7 +216,9 @@ export default {
   height: 150vh;
   border-radius: 20px;
   background-size: cover;
+  background-image: url('@/assets/img/bg8.jpg');
 }
+
 
 .employee-form {
   display: flex;

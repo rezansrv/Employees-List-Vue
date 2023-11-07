@@ -34,7 +34,7 @@ export default {
   padding-top: 20px;
   background-color: #ffffff;
 opacity: 1;
-background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 14px ), repeating-linear-gradient( #f3f2f255, #f3f2f2 );
+background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #efeeee 14px ), repeating-linear-gradient( #f3f2f255, #f3f2f2 );
 }
 
 

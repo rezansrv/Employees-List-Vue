@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :style="backgroundStyle" >
+  <div class="container" >
     <h1 class="header">Employees List</h1>
     <!-- اضافه کردن ورودی برای نام کارمند -->
 
@@ -49,12 +49,7 @@ export default {
   },
   computed: {
 
-    backgroundStyle(){
-      return {
-        backgroundImage: `url(https://source.unsplash.com/1080x1080/?office,${Math.random()} ) `,
-      };
-    }   
-    
+
   },
   methods: {
     loadEmployees() {
@@ -78,7 +73,7 @@ export default {
   display: block;
   width: 100%;
   text-align: center;
-  color: #003670;
+  color: #ffffff;
   margin-bottom: 40px;
 }
 .container {
@@ -87,9 +82,11 @@ export default {
   margin: 0 auto;
   margin-top: 50px;
   text-align: center;
-  height: 150vh;
+  height: 100vh;
   border-radius: 10px;
   background-size: cover;
+  background-image: url('@/assets/img/bg5.jpg');
+
 }
 
 .employee-form {

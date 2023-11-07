@@ -55,7 +55,6 @@ export default {
               "Login successful",
               "You have successfully logged in."
             );
-
             // Check if the email is organizational
             const isOrganizationalEmail = this.isOrganizationalEmail(
               this.user.email
@@ -92,16 +91,17 @@ export default {
     Swal.fire({
       title: title,
       text: message,
-      icon: "success", // استفاده از آیکن تیک
+      icon: "success",
     });
   } else if (this.loginSuccess === false) {
     Swal.fire({
       title: title,
       text: message,
-      icon: "error", // استفاده از آیکن اشتباه
+      icon: "error",
     });
   }
 },
+
 
     isOrganizationalEmail(email) {
       const organizationDomains = ["g2.com", "g2.co", "g2.org", "go2tr.com", "go2tr.co", "go2tr.org","g2holdin.com","g2holdin.co" ]; // Add your organization's domains here
@@ -110,6 +110,7 @@ export default {
     },
   },
 };
+
 </script>
 <style>
 
