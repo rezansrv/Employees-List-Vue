@@ -2,16 +2,19 @@
   <div class="container">
     <h2 class="login-title">Login</h2>
     <form @submit.prevent="loginUser" class="login-form">
+      <!-- Email input field -->
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="user.email" required />
       </div>
 
+      <!-- Password input field -->
       <div class="form-group">
-  <label for="password">Password:</label>
-  <input type="password" id="password" v-model="user.password" required />
-</div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="user.password" required />
+      </div>
 
+      <!-- Submit button for user login -->
       <button type="submit" class="login-button">Login</button>
     </form>
     <p>
@@ -23,9 +26,6 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
-localStorage.setItem("isAdmin", "false");
-localStorage.setItem("isUser", "false");
-
 
 export default {
   data() {
@@ -34,7 +34,7 @@ export default {
         email: "",
         password: "",
       },
-      loginSuccess: null, // Added loginSuccess to data
+      loginSuccess: null, // Added loginSuccess to data to track login success
     };
   },
   methods: {
@@ -67,7 +67,7 @@ export default {
               // Redirect to the admin page
               this.$router.push("/admin");
             } else {
-              // Set isAdmin to false in local storage
+              // Set isUser to true in local storage
               localStorage.setItem("isUser", "true");
               // Redirect to the home page
               this.$router.push("/home");
@@ -75,7 +75,10 @@ export default {
           } else {
             // User with the provided email and password not found
             this.loginSuccess = false; // Set loginSuccess to false
-            this.showLoginResult("User not found", "The provided user was not found.");
+            this.showLoginResult(
+              "User not found",
+              "The provided user was not found."
+            );
           }
         })
         .catch((error) => {
@@ -87,34 +90,41 @@ export default {
         });
     },
     showLoginResult(title, message) {
-  if (this.loginSuccess === true) {
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: "success",
-    });
-  } else if (this.loginSuccess === false) {
-    Swal.fire({
-      title: title,
-      text: message,
-      icon: "error",
-    });
-  }
-},
-
+      if (this.loginSuccess === true) {
+        Swal.fire({
+          title: title,
+          text: message,
+          icon: "success",
+        });
+      } else if (this.loginSuccess === false) {
+        Swal.fire({
+          title: title,
+          text: message,
+          icon: "error",
+        });
+      }
+    },
 
     isOrganizationalEmail(email) {
-      const organizationDomains = ["g2.com", "g2.co", "g2.org", "go2tr.com", "go2tr.co", "go2tr.org","g2holdin.com","g2holdin.co" ]; // Add your organization's domains here
+      const organizationDomains = [
+        "g2.com",
+        "g2.co",
+        "g2.org",
+        "go2tr.com",
+        "go2tr.co",
+        "go2tr.org",
+        "g2holdin.com",
+        "g2holdin.co",
+      ];
       const domain = email.split("@")[1];
       return organizationDomains.includes(domain);
     },
   },
 };
-
 </script>
-<style>
 
-.container{
+<style>
+.container {
   height: 100vh;
 }
 
@@ -127,7 +137,8 @@ export default {
   margin: 0 auto;
   background-color: #f7f7f7;
   padding: 30px;
-  padding-left: 12px;  border-radius: 10px;
+  padding-left: 12px;
+  border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 

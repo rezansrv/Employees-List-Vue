@@ -1,11 +1,10 @@
 <template>
-  <div class="container" >
+  <div class="container">
     <h1 class="header">Employees List</h1>
-    <!-- اضافه کردن ورودی برای نام کارمند -->
-
     <table>
       <thead>
         <tr>
+          <!-- Table header columns -->
           <th>ID</th>
           <th>Name</th>
           <th>Salary</th>
@@ -15,11 +14,15 @@
       </thead>
       <tbody>
         <tr v-for="employee in employees" :key="employee.id">
+          <!-- Displaying employee data fetched from the server -->
           <td>{{ employee.id }}</td>
           <td>{{ employee.employee_name }}</td>
           <td>{{ employee.employee_salary }} $</td>
           <td>{{ employee.employee_age }}</td>
-          <td>{{ employee.employee_uni.length ? employee.employee_uni : '----' }}</td>
+          <td>
+            <!-- Displaying university information if available, otherwise displaying a dash -->
+            {{ employee.employee_uni.length ? employee.employee_uni : "----" }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -45,13 +48,12 @@ export default {
     };
   },
   mounted() {
+    // When the page is loaded, employee data is loaded from the server
     this.loadEmployees();
   },
-  computed: {
-
-
-  },
+  computed: {},
   methods: {
+    // Function to load employee data from the server
     loadEmployees() {
       axios
         .get("http://localhost:3000/employees")
@@ -59,16 +61,17 @@ export default {
           this.employees = response.data;
         })
         .catch((error) => {
-          console.error("خطا در دریافت داده‌ها: " + error);
+          // In case of an error, the error is displayed
+          console.error("Error in getting data" + error);
         });
     },
   },
 };
 </script>
-  
-  <style scoped>
-  
-  .header {
+
+
+<style scoped>
+.header {
   margin: 0 auto;
   display: block;
   width: 100%;
@@ -85,8 +88,7 @@ export default {
   height: 100vh;
   border-radius: 10px;
   background-size: cover;
-  background-image: url('@/assets/img/bg5.jpg');
-
+  background-image: url("@/assets/img/bg5.jpg");
 }
 
 .employee-form {
@@ -184,7 +186,4 @@ tbody tr:nth-child(odd) {
 tbody tr:hover {
   background-color: #cfe8fc;
 }
-
-
-  </style>
-  
+</style>

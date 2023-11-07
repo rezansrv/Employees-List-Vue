@@ -1,48 +1,28 @@
 <template>
-  <div class="container" >
+  <div class="container">
     <h1 class="header">Employees List</h1>
     <div class="employee-form">
+      <!-- Form for adding or editing employees -->
       <div class="input-row">
-        <input
-          v-model="newEmployeeName"
-          placeholder="Name"
-          class="input-field"
-        />
-        <input
-          v-model="newEmployeeSalary"
-          placeholder="Salary"
-          class="input-field"
-          @input="sanitizeInput"
-        />
-        <input
-          v-model="newEmployeeAge"
-          placeholder="Age"
-          class="input-field"
-          @input="sanitizeInput"
-        />
-        <input
-          v-model="newEmployeeUni"
-          v-if="newEmployeeAge >= 20"
-          placeholder="Uni"
-          class="input-field"
-        />
+        <input v-model="newEmployeeName" placeholder="Name" class="input-field" />
+        <input v-model="newEmployeeSalary" placeholder="Salary" class="input-field" @input="sanitizeInput" />
+        <input v-model="newEmployeeAge" placeholder="Age" class="input-field" @input="sanitizeInput" />
+        <input v-model="newEmployeeUni" v-if="newEmployeeAge >= 20" placeholder="Uni" class="input-field" />
       </div>
-      <button
-        @click="addEmployee"
-        :disabled="isButtonDisabled"
-        class="add-button"
-      >
+      <button @click="addEmployee" :disabled="isButtonDisabled" class="add-button">
+        <!-- Add employee button -->
         <i class="fa fa-plus" style="font-size: 22px; color: #fff"></i>
       </button>
       <button @click="saveEmployeeChanges" class="add-button edit-button">
-        <i class="fa fa-save" style="font-size: 22px;  color: #fff"></i> Save
-        Changes
+        <!-- Save employee changes button -->
+        <i class="fa fa-save" style="font-size: 22px; color: #fff"></i> Save Changes
       </button>
     </div>
 
     <table>
       <thead>
         <tr>
+          <!-- Table header columns -->
           <th>ID</th>
           <th>Name</th>
           <th>Salary</th>
@@ -53,12 +33,14 @@
       </thead>
       <tbody>
         <tr v-for="employee in employees" :key="employee.id">
+          <!-- Displaying employee data -->
           <td>{{ employee.id }}</td>
           <td>{{ employee.employee_name }}</td>
           <td>{{ employee.employee_salary }} $</td>
           <td>{{ employee.employee_age }}</td>
           <td>{{ employee.employee_uni || "----" }}</td>
           <td>
+            <!-- Buttons for deleting and editing employees -->
             <a @click="deleteEmployee(employee.id)" class="btn btn-danger">
               <i class="fa fa-trash"></i> Delete
             </a>
@@ -100,17 +82,19 @@ export default {
         this.newEmployeeAge
       );
     },
-
   },
   mounted() {
+    // Load employees when the page is mounted
     this.loadEmployees();
   },
   methods: {
     sanitizeInput() {
+      // Remove non-numeric characters from salary and age inputs
       this.newEmployeeSalary = this.newEmployeeSalary.replace(/[^0-9]/g, "");
       this.newEmployeeAge = this.newEmployeeAge.replace(/[^0-9]/g, "");
     },
     loadEmployees() {
+      // Fetch employee data from the server
       axios
         .get("http://localhost:3000/employees")
         .then((response) => {
@@ -121,6 +105,7 @@ export default {
         });
     },
     addEmployee() {
+      // Add a new employee to the server
       axios
         .post("http://localhost:3000/employees", {
           employee_name: this.newEmployeeName,
@@ -132,10 +117,13 @@ export default {
           if (response.status === 201) {
             Swal.fire("Employee added successfully!", response.data, "success");
 
+            // Clear input fields after adding
             this.newEmployeeName = "";
             this.newEmployeeSalary = "";
             this.newEmployeeAge = "";
             this.newEmployeeUni = "";
+
+            // Reload the list of employees
             this.loadEmployees();
           } else {
             Vue.swal("Error adding employee.");
@@ -143,16 +131,14 @@ export default {
         });
     },
     deleteEmployee(employeeId) {
+      // Delete an employee from the server
       axios
         .delete("http://localhost:3000/employees/" + employeeId)
         .then((response) => {
           if (response.status === 200) {
-            Swal.fire(
-              "Employee deleted successfully!",
-              response.data,
-              "success"
-            );
+            Swal.fire("Employee deleted successfully!", response.data, "success");
 
+            // Reload the list of employees
             this.loadEmployees();
           } else {
             Vue.swal("Error deleting employee.");
@@ -160,6 +146,7 @@ export default {
         });
     },
     editEmployee(employee) {
+      // Edit an existing employee
       this.newEmployeeName = employee.employee_name;
       this.newEmployeeSalary = employee.employee_salary;
       this.newEmployeeAge = employee.employee_age;
@@ -168,6 +155,7 @@ export default {
     },
     saveEmployeeChanges() {
       if (this.editEmployeeId) {
+        // Save changes made to an employee
         axios
           .put("http://localhost:3000/employees/" + this.editEmployeeId, {
             employee_name: this.newEmployeeName,
@@ -177,16 +165,16 @@ export default {
           })
           .then((response) => {
             if (response.status === 200) {
-              Swal.fire(
-                "Employee updated successfully!",
-                response.data,
-                "success"
-              );
+              Swal.fire("Employee updated successfully!", response.data, "success");
+
+              // Clear input fields after updating
               this.newEmployeeName = "";
               this.newEmployeeSalary = "";
               this.newEmployeeAge = "";
               this.newEmployeeUni = "";
               this.editEmployeeId = null;
+
+              // Reload the list of employees
               this.loadEmployees();
             } else {
               Swal.fire("Error updating employee.");
@@ -216,9 +204,8 @@ export default {
   height: 150vh;
   border-radius: 20px;
   background-size: cover;
-  background-image: url('@/assets/img/bg8.jpg');
+  background-image: url("@/assets/img/bg8.jpg");
 }
-
 
 .employee-form {
   display: flex;
@@ -269,11 +256,10 @@ export default {
   background-color: #0056b3;
 }
 
-.edit-button{
-margin-top: 2px;
-margin-bottom: 15px;
+.edit-button {
+  margin-top: 2px;
+  margin-bottom: 15px;
 }
-
 
 .delete-btn {
   background-color: transparent;
@@ -321,5 +307,13 @@ tbody tr:nth-child(odd) {
 
 tbody tr:hover {
   background-color: #cfe8fc;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .container {
+  height: 250vh;
+  width: 100%;
+}
 }
 </style>
