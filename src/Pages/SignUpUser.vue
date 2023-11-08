@@ -107,7 +107,7 @@ export default {
   margin: 0 auto;
   background-color: #f7f7f7;
   padding: 30px;
-  padding-left: 12px;
+  padding-left: 25px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -133,7 +133,7 @@ export default {
   padding: 12px 20px;
   border: none;
   margin-top: 25px;
-  width: 421px;
+  width: 360px;
   cursor: pointer;
   border-radius: 5px;
 }

@@ -11,6 +11,11 @@
         style="display: flex; width: 80px; justify-content: center"
         >Login</router-link
       >
+      <router-link
+        to="/tasks"
+        style="display: flex; width: 80px; justify-content: center; background-color: #007bff; color: white;"
+        >Tasks</router-link
+      >
       <!-- Display the "Home" button only if the user is an admin -->
       <router-link
         v-if="isAdmin"
@@ -23,6 +28,7 @@
         style="display: flex; width: 80px; justify-content: center"
         >Home</router-link
       >
+
     </div>
     <router-view></router-view>
   </div>

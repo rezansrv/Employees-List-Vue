@@ -5,55 +5,66 @@
       "employee_salary": 320800,
       "employee_age": "40",
       "employee_uni": "texas",
-      "id": 1
+      "employee_task":"Change photo sphoto photos",
+      "id": 1 
     },
     {
-      "id": 2,
       "employee_name": "Garrett Winters",
       "employee_salary": 170750,
-      "employee_age": 63,
-      "employee_uni": "Harvard University"
+      "employee_age": "60",
+      "employee_uni": "Harvard University",
+      "employee_task":"Change photos2",
+      "id": 2
+      
     },
     {
       "id": 3,
       "employee_name": "Ashton Cox",
       "employee_salary": 86000,
       "employee_age": 66,
-      "employee_uni": "Stanford University"
+      "employee_uni": "Stanford University",
+      "employee_task":"Change photos3"
+      
     },
     {
       "id": 4,
       "employee_name": "Cedric Kelly",
       "employee_salary": 433060,
       "employee_age": 22,
-      "employee_uni": "University of Cambridge"
+      "employee_uni": "University of Cambridge",
+      "employee_task":"Change photos3"
     },
     {
       "id": 5,
       "employee_name": "Airi Satou",
       "employee_salary": 162700,
       "employee_age": 33,
-      "employee_uni": "University of Oxford"
+      "employee_uni": "University of Oxford",
+      "employee_task":"Change photos3"
     },
     {
       "id": 6,
       "employee_name": "Brielle Williamson",
       "employee_salary": 372000,
       "employee_age": 61,
-      "employee_uni": "texas"
+      "employee_uni": "texas",
+      "employee_task":"Change photos3"
     },
     {
       "id": 7,
       "employee_name": "Cedric Kelly",
       "employee_salary": 433060,
       "employee_age": 22,
-      "employee_uni": "University of Cambridge"
+      "employee_uni": "University of Cambridge",
+      "employee_task":"Change photos3"
+      
     },
     {
       "employee_name": "Airi Satu",
       "employee_salary": 162700,
       "employee_age": 33,
       "employee_uni": "University of Oxford",
+      "employee_task":"Change photos3",
       "id": 8
     }
   ],
@@ -225,6 +236,14 @@
       "pass": "123456",
       "isAdmin": false,
       "id": 24
+    },
+    {
+      "first_name": "svsdv",
+      "last_name": "svsv",
+      "email": "tina.hosseinpour@gmail.com",
+      "pass": "123456",
+      "isAdmin": false,
+      "id": 25
     }
   ]
 }

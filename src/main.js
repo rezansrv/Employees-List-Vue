@@ -2,10 +2,12 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueSweetalert2 from "vue-sweetalert2";
 import VueRouter from "vue-router";
-import SignUpUser from "./components/SignUpUser.vue";
-import LoginUser from "./components/LoginUser.vue";
-import Admin from "./components/Admin.vue";
-import Home from "./components/Home.vue";
+import SignUpUser from "./Pages/SignUpUser.vue";
+import LoginUser from "./Pages/LoginUser.vue";
+import Admin from "./Pages/Admin.vue";
+import Home from "./Pages/Home.vue";
+import Tasks from "./Pages/TaskManagement.vue";
+import store from "./store/store.js";
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,7 @@ const routes = [
   { path: "/", component: LoginUser }, // Default route for user login
   { path: "/Admin", component: Admin, meta: { requiresAdmin: true } }, // Admin dashboard route (requires admin privileges)
   { path: "/home", component: Home, meta: { requiresUser: true } }, // User dashboard route (requires user privileges)
+  { path: "/Tasks", component: Tasks, meta: { requiresUser: true } },
 ];
 
 const router = new VueRouter({
@@ -51,5 +54,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
