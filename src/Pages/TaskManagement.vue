@@ -121,13 +121,13 @@ export default {
     logingOut() {
       console.log("asbvkskjvshkisdj");
       localStorage.clear();
-      //       Swal.fire({
-      //   text: "You must Login First",
-      //   icon: "warning",
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "OK",
-      // })
+      Swal.fire({
+        text: "Logout ",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK",
+      })
     },
     deleteEmployee(id) {
       Swal.fire({
@@ -179,13 +179,13 @@ export default {
 <style scoped>
 .container {
   background-image: url("@/assets/img/bg5.jpg");
-  max-width: 80%;
-  padding: 3rem;
+  max-width: 85%;
+  padding: 60px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 50px;
   text-align: center;
   background-size: cover;
-  height: 150vh;
+  height: 210vh;
   border-radius: 12px;
 }
 .header {

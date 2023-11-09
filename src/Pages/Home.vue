@@ -56,6 +56,8 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import Swal from "sweetalert2";
+
 
 Vue.use(VueAxios, axios);
 
@@ -79,13 +81,13 @@ export default {
     logingOut() {
       console.log("asbvkskjvshkisdj");
       localStorage.clear();
-      //       Swal.fire({
-      //   text: "You must Login First",
-      //   icon: "warning",
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "OK",
-      // })
+      Swal.fire({
+        text: "Logout ",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK",
+      })
     },
     // Function to load employee data from the server
     loadEmployees() {
@@ -113,12 +115,12 @@ export default {
   margin-bottom: 40px;
 }
 .container {
-  max-width: 80%;
-  padding: 40px;
+  max-width: 85%;
+  padding: 60px;
   margin: 0 auto;
   margin-top: 50px;
   text-align: center;
-  height: 100vh;
+  height: 135vh;
   border-radius: 10px;
   background-size: cover;
   background-image: url("@/assets/img/bg5.jpg");
@@ -133,7 +135,7 @@ export default {
   width: 75%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #ffffffcc;
+  background-color: #ffffffe9;
 }
 
 .input-field {
@@ -201,18 +203,18 @@ td {
 }
 
 th {
-  background-color: #f0f0f0b0;
+  background-color: #f0f0f0d6;
   padding: 12px;
   font-size: 14px;
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f2f2f2d8;
+  background-color: #f2f2f2f3;
   transition: background-color 0.3s;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #f8f8f8d7;
+  background-color: #f8f8f8f2;
   transition: background-color 0.3s;
 }
 

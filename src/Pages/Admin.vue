@@ -60,6 +60,7 @@
         />
       </div>
       <button
+      v-if="!onClickEdit"
         @click="addEmployee"
         :disabled="isButtonDisabled"
         class="add-button"
@@ -67,7 +68,7 @@
         <!-- Add employee button -->
         <i class="fa fa-plus" style="font-size: 22px; color: #fff"></i>
       </button>
-      <button @click="saveEmployeeChanges" class="add-button edit-button">
+      <button v-if="onClickEdit" @click="saveEmployeeChanges" class="add-button edit-button">
         <!-- Save employee changes button -->
         <i class="fa fa-save" style="font-size: 22px; color: #fff"></i> Save
         Changes
@@ -110,6 +111,7 @@
 </template>
 
 <script>
+
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -128,6 +130,7 @@ export default {
       newEmployeeUni: "",
       newEmployeeTask:"",
       editEmployeeId: null,
+      onClickEdit: false,      
     };
   },
   computed: {
@@ -145,15 +148,15 @@ export default {
   },
   methods: {
     logingOut() {
-      console.log("asbvkskjvshkisdj");
       localStorage.clear();
-      //       Swal.fire({
-      //   text: "You must Login First",
-      //   icon: "warning",
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "OK",
-      // })
+            Swal.fire({
+              title:"logged Out",
+        text: "You have successfully logged Out. ",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK",
+      })
     },
     sanitizeInput() {
       // Remove non-numeric characters from salary and age inputs
@@ -219,6 +222,15 @@ export default {
         });
     },
     editEmployee(employee) {
+      if (this.onClickEdit) {
+    // اگر مقدار onClickEdit در حال حاضر true باشد، آن را به false تغییر دهید.
+    this.onClickEdit = false;
+  } else {
+    // در غیر این صورت، مقدار را به true تنظیم کنید.
+    this.onClickEdit = true;
+  }
+      console.log(this.onClickEdit);
+
       // Edit an existing employee
       this.newEmployeeName = employee.employee_name;
       this.newEmployeeSalary = employee.employee_salary;
@@ -282,7 +294,7 @@ export default {
   margin: 0 auto;
   margin-top: 30px;
   text-align: center;
-  height: 170vh;
+  height: 200vh;
   border-radius: 20px;
   background-size: cover;
   background-image: url("@/assets/img/bg8.jpg");
@@ -294,7 +306,7 @@ export default {
   align-items: center;
   margin: 0 auto;
   padding: 15px;
-  width: 75%;
+  width: 90%;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #ffffffcc;
@@ -317,7 +329,7 @@ export default {
 .add-button {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-top: 25px;
   background-color: #207cca;
   color: #fff;
@@ -338,7 +350,7 @@ export default {
 }
 
 .edit-button {
-  margin-top: 2px;
+  margin-top: 25px;
   margin-bottom: 15px;
 }
 
@@ -358,7 +370,7 @@ table {
   margin-bottom: 50px;
   border-collapse: collapse;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #ccc;
 }

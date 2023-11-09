@@ -2,18 +2,11 @@
   "employees": [
     {
       "employee_name": "Tiger Nixon",
-      "employee_salary": 320800,
+      "employee_salary": "320800",
       "employee_age": "40",
       "employee_uni": "texas",
-      "employee_task": "hiii",
+      "employee_task": "take photo",
       "id": 1
-    },
-    {
-      "employee_name": "Garrett Winters",
-      "employee_salary": 170750,
-      "employee_age": "60",
-      "employee_uni": "Harvard University",
-      "id": 2
     },
     {
       "id": 3,
@@ -24,12 +17,12 @@
       "employee_task": "Change photos3"
     },
     {
-      "id": 4,
       "employee_name": "Cedric Kelly",
       "employee_salary": 433060,
       "employee_age": 22,
       "employee_uni": "University of Cambridge",
-      "employee_task": "Change photos3"
+      "employee_task": "Change photos3",
+      "id": 4
     },
     {
       "id": 5,
@@ -78,6 +71,37 @@
       "employee_uni": "texas",
       "employee_task": "dfsbbdfbdb",
       "id": 13
+    },
+    {
+      "employee_name": "vsvv",
+      "employee_salary": "2000",
+      "employee_age": "20",
+      "employee_uni": "tabriz",
+      "employee_task": "frontend",
+      "id": 14
+    },
+    {
+      "employee_name": "xc xc",
+      "employee_salary": "20",
+      "employee_age": "020",
+      "employee_uni": "",
+      "employee_task": "",
+      "id": 15
+    },
+    {
+      "employee_name": "fd  ",
+      "employee_salary": "20",
+      "employee_age": "202",
+      "employee_uni": "",
+      "employee_task": "tjnt",
+      "id": 16
+    },
+    {
+      "employee_name": "Garrett Winters",
+      "employee_salary": 170750,
+      "employee_age": "60",
+      "employee_uni": "Harvard University",
+      "id": 17
     }
   ],
   "user": [
@@ -264,6 +288,14 @@
       "pass": "123456",
       "isAdmin": true,
       "id": 26
+    },
+    {
+      "first_name": "fatemeh",
+      "last_name": "absavaran",
+      "email": "fatemeh.absavaran@go2tr.co",
+      "pass": "13812002",
+      "isAdmin": true,
+      "id": 27
     }
   ]
 }
