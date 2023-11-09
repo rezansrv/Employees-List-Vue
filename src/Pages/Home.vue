@@ -1,5 +1,28 @@
 <template>
   <div class="container">
+    <div class="links" style="display: flex; justify-content: center; margin-bottom: 30px;" >
+    <router-link
+      to="/tasks"
+      @click.native="alert"
+      style="display: flex; width: 80px; justify-content: center"
+      >Tasks</router-link
+    >
+    <router-link
+      to="/"
+      style="
+        display: flex;
+        width: 80px;
+        justify-content: center;
+        background-color: red;
+        color: white;
+        border: none;
+        text-align: right;
+      "
+    >
+      <span v-on:click="logingOut">logout</span>
+    </router-link>
+    </div>
+
     <h1 class="header">Employees List</h1>
     <table>
       <thead>
@@ -53,6 +76,17 @@ export default {
   },
   computed: {},
   methods: {
+    logingOut() {
+      console.log("asbvkskjvshkisdj");
+      localStorage.clear();
+      //       Swal.fire({
+      //   text: "You must Login First",
+      //   icon: "warning",
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "OK",
+      // })
+    },
     // Function to load employee data from the server
     loadEmployees() {
       axios
@@ -68,7 +102,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .header {

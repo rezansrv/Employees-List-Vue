@@ -1,21 +1,76 @@
 <template>
   <div class="container">
+    <div class="links" style="display: flex; justify-content: center; margin-bottom: 30px;" >
+      <router-link
+      to="/tasks"
+      style="display: flex; width: 80px; justify-content: center"
+      >Tasks</router-link
+    >
+    <router-link
+      to="/home"
+      style="display: flex; width: 80px; justify-content: center"
+      >Home</router-link
+    >
+    <router-link
+      to="/"
+      class="logout-btn"
+      style="
+        display: flex;
+        width: 80px;
+        justify-content: center;
+        border: none;
+        text-align: right;
+      "
+    >
+      <span v-on:click="logingOut">logout</span>
+    </router-link>
+</div>
+
     <h1 class="header">Employees List</h1>
     <div class="employee-form">
       <!-- Form for adding or editing employees -->
       <div class="input-row">
-        <input v-model="newEmployeeName" placeholder="Name" class="input-field" />
-        <input v-model="newEmployeeSalary" placeholder="Salary" class="input-field" @input="sanitizeInput" />
-        <input v-model="newEmployeeAge" placeholder="Age" class="input-field" @input="sanitizeInput" />
-        <input v-model="newEmployeeUni" v-if="newEmployeeAge >= 20" placeholder="Uni" class="input-field" />
+        <input
+          v-model="newEmployeeName"
+          placeholder="Name"
+          class="input-field"
+        />
+        <input
+          v-model="newEmployeeSalary"
+          placeholder="Salary"
+          class="input-field"
+          @input="sanitizeInput"
+        />
+        <input
+          v-model="newEmployeeAge"
+          placeholder="Age"
+          class="input-field"
+          @input="sanitizeInput"
+        />
+        <input
+          v-model="newEmployeeUni"
+          v-if="newEmployeeAge >= 20"
+          placeholder="Uni"
+          class="input-field"
+        />
+        <input
+          v-model="newEmployeeTask"
+          placeholder="Add Task (optional)"
+          class="input-field"
+        />
       </div>
-      <button @click="addEmployee" :disabled="isButtonDisabled" class="add-button">
+      <button
+        @click="addEmployee"
+        :disabled="isButtonDisabled"
+        class="add-button"
+      >
         <!-- Add employee button -->
         <i class="fa fa-plus" style="font-size: 22px; color: #fff"></i>
       </button>
       <button @click="saveEmployeeChanges" class="add-button edit-button">
         <!-- Save employee changes button -->
-        <i class="fa fa-save" style="font-size: 22px; color: #fff"></i> Save Changes
+        <i class="fa fa-save" style="font-size: 22px; color: #fff"></i> Save
+        Changes
       </button>
     </div>
 
@@ -71,6 +126,7 @@ export default {
       newEmployeeSalary: "",
       newEmployeeAge: "",
       newEmployeeUni: "",
+      newEmployeeTask:"",
       editEmployeeId: null,
     };
   },
@@ -88,6 +144,17 @@ export default {
     this.loadEmployees();
   },
   methods: {
+    logingOut() {
+      console.log("asbvkskjvshkisdj");
+      localStorage.clear();
+      //       Swal.fire({
+      //   text: "You must Login First",
+      //   icon: "warning",
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "OK",
+      // })
+    },
     sanitizeInput() {
       // Remove non-numeric characters from salary and age inputs
       this.newEmployeeSalary = this.newEmployeeSalary.replace(/[^0-9]/g, "");
@@ -112,6 +179,7 @@ export default {
           employee_salary: this.newEmployeeSalary,
           employee_age: this.newEmployeeAge,
           employee_uni: this.newEmployeeUni,
+          employee_task:this.newEmployeeTask,
         })
         .then((response) => {
           if (response.status === 201) {
@@ -122,6 +190,7 @@ export default {
             this.newEmployeeSalary = "";
             this.newEmployeeAge = "";
             this.newEmployeeUni = "";
+            this.newEmployeeTask="";
 
             // Reload the list of employees
             this.loadEmployees();
@@ -136,7 +205,11 @@ export default {
         .delete("http://localhost:3000/employees/" + employeeId)
         .then((response) => {
           if (response.status === 200) {
-            Swal.fire("Employee deleted successfully!", response.data, "success");
+            Swal.fire(
+              "Employee deleted successfully!",
+              response.data,
+              "success"
+            );
 
             // Reload the list of employees
             this.loadEmployees();
@@ -151,6 +224,7 @@ export default {
       this.newEmployeeSalary = employee.employee_salary;
       this.newEmployeeAge = employee.employee_age;
       this.newEmployeeUni = employee.employee_uni || "";
+      this.newEmployeeTask= employee.employee_task;
       this.editEmployeeId = employee.id;
     },
     saveEmployeeChanges() {
@@ -162,16 +236,23 @@ export default {
             employee_salary: this.newEmployeeSalary,
             employee_age: this.newEmployeeAge,
             employee_uni: this.newEmployeeUni,
+            employee_task:this.newEmployeeTask
+            
           })
           .then((response) => {
             if (response.status === 200) {
-              Swal.fire("Employee updated successfully!", response.data, "success");
+              Swal.fire(
+                "Employee updated successfully!",
+                response.data,
+                "success"
+              );
 
               // Clear input fields after updating
               this.newEmployeeName = "";
               this.newEmployeeSalary = "";
               this.newEmployeeAge = "";
               this.newEmployeeUni = "";
+              this.newEmployeeTask="";
               this.editEmployeeId = null;
 
               // Reload the list of employees
@@ -201,7 +282,7 @@ export default {
   margin: 0 auto;
   margin-top: 30px;
   text-align: center;
-  height: 150vh;
+  height: 170vh;
   border-radius: 20px;
   background-size: cover;
   background-image: url("@/assets/img/bg8.jpg");
@@ -309,11 +390,19 @@ tbody tr:hover {
   background-color: #cfe8fc;
 }
 
-@media only screen and (max-width: 600px) {
+.logout-btn{
+  background-color: red;
+  color: white;
 
-  .container {
-  height: 250vh;
-  width: 100%;
 }
+.logout-btn:hover{
+  color: red;
+  background: white;
+}
+@media only screen and (max-width: 600px) {
+  .container {
+    height: 250vh;
+    width: 100%;
+  }
 }
 </style>

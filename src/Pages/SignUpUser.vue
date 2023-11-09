@@ -148,13 +148,14 @@ export default {
   font-weight: 600;
 }
 
+
 p {
   text-align: center;
   margin-top: 20px;
 }
 
 p a {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   margin-left: 5px;

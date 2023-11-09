@@ -1,40 +1,12 @@
 <template>
   <div id="app">
-    <div class="links" style="display: flex; justify-content: center">
-      <router-link
-        to="/signup"
-        style="display: flex; width: 80px; justify-content: center"
-        >Sign Up</router-link
-      >
-      <router-link
-        to="/"
-        style="display: flex; width: 80px; justify-content: center"
-        >Login</router-link
-      >
-      <router-link
-        to="/tasks"
-        style="display: flex; width: 80px; justify-content: center; background-color: #007bff; color: white;"
-        >Tasks</router-link
-      >
-      <!-- Display the "Home" button only if the user is an admin -->
-      <router-link
-        v-if="isAdmin"
-        to="/Admin"
-        style="display: flex; width: 80px; justify-content: center"
-        >Admin</router-link
-      >
-      <router-link
-        to="/home"
-        style="display: flex; width: 80px; justify-content: center"
-        >Home</router-link
-      >
 
-    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "App",
   data() {
@@ -42,11 +14,31 @@ export default {
       isAdmin: false, // Initially set as a regular user
     };
   },
-  created() {
+  computed(){
     // Read the value of `isAdmin` from Local Storage and set it
     const isAdmin = localStorage.getItem("isAdmin") === "true";
     this.isAdmin = isAdmin;
+    const isUser = localStorage.getItem("isUser") === "true";
+    this.isUser = isUser;
   },
+  created() {
+
+  },
+  methods:{
+    logingOut(){
+      console.log("asbvkskjvshkisdj")
+      localStorage.clear(); 
+      //       Swal.fire({
+      //   text: "You must Login First",
+      //   icon: "warning",
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "OK",
+      // })
+  },
+
+  
+  }
 };
 </script>
 
@@ -69,17 +61,18 @@ a {
   margin: 5px;
   text-align: center;
   text-decoration: none;
-  color: #007bff;
+  color: #ffffff;
   font-weight: 600;
   padding: 5px 10px;
   border: 1px solid #007bff;
-  background-color: #ffffff;
+  background-color: #007bff;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
+  flex-wrap: wrap;
 }
 
 a:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: #ffffff;
+  color: #007bff;
 }
 </style>

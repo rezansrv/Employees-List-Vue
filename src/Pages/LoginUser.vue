@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   height: 100vh;
 }
@@ -176,9 +176,13 @@ p {
 }
 
 p a {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   margin-left: 5px;
+}
+
+p a:hover{
+  color: #007bff;
 }
 </style>
