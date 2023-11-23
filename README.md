@@ -4,9 +4,9 @@
 
 ##Step 1
 
-### Start the Server
+### Start the Server(Start up the JSON Server)
 ```
-Start up the JSON Server by typing this command into your terminal: json-server --watch db.json. This will run on "https://localhost:3000" by default. You can change the port it's running on by specifying a different port number when starting the server using the --port flag. 
+ type this command into your terminal: json-server --watch db.json. This will run on "https://localhost:3000" by default.
 ```
 ##Step 2 
 ```
