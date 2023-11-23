@@ -2,13 +2,13 @@
 
 ## Project setup
 
-##Step 1
+#### Step 1
 
 ### Start the Server(Start up the JSON Server)
 ```
- type this command into your terminal: json-server --watch db.json. This will run on "https://localhost:3000" by default.
+ type this command into your terminal: json-server --watch db.json . This will run on "https://localhost:3000" by default.
 ```
-##Step 2 
+#### Step 2 
 ```
 npm install
 ```
